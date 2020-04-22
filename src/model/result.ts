@@ -5,7 +5,7 @@ export type Success<T> = {
 };
 export type Failure = {
     value?: undefined,
-    diags: Diagnostic[],
+    diags?: Diagnostic[],
 };
 
 export type Result<T> = Success<T> | Failure;

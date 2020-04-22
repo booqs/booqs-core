@@ -1,7 +1,11 @@
 export type BooqPath = number[];
 
+export type BooqIgnoreNode = {
+    node: 'ignore',
+    comment?: string,
+}
 export type BooqStringNode = {
-    node: 'string',
+    node: 'text',
     content: string,
 };
 
@@ -20,7 +24,8 @@ export type BooqElementNode = {
     attrs?: BooqNodeAttrs,
 }
 
-export type BooqNode = BooqStringNode | BooqElementNode;
+export type BooqNode =
+    | BooqStringNode | BooqElementNode | BooqIgnoreNode;
 
 export type BooqImage = {
     image: 'url', url: string,
@@ -46,7 +51,7 @@ export type BooqMeta = {
     languages?: string[],
     subjects?: string[],
     license?: string,
-    extra: {
+    extra?: {
         [name in string]?: string;
     },
 };
