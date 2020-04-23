@@ -3,10 +3,18 @@ export type BooqPath = number[];
 export type BooqIgnoreNode = {
     node: 'ignore',
     comment?: string,
+    attrs?: undefined,
 }
 export type BooqStringNode = {
     node: 'text',
     content: string,
+    attrs?: undefined,
+};
+export type BooqImageNode = {
+    node: 'image',
+    image: BooqImage,
+    id?: string,
+    attrs?: BooqNodeAttrs,
 };
 
 export type BooqNodeAttrs = {
@@ -25,7 +33,7 @@ export type BooqElementNode = {
 }
 
 export type BooqNode =
-    | BooqStringNode | BooqElementNode | BooqIgnoreNode;
+    | BooqStringNode | BooqElementNode | BooqIgnoreNode | BooqImageNode;
 
 export type BooqImage = {
     image: 'url', url: string,
