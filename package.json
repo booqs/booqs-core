@@ -1,9 +1,9 @@
 {
   "name": "booqs-core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Booqs core",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "lint": "eslint src/**/*",

@@ -1,6 +1,5 @@
 {
     "files.exclude": {
-        "**/dist/**": true,
         "**/.DS_Store": true,
         "**/node_modules/**": true
     },
@@ -9,6 +8,7 @@
     },
     "editor.formatOnSave": true,
     "cSpell.words": [
+        "Booq",
         "Shakirzianov",
         "booqs",
         "readonly"
