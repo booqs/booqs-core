@@ -1,12 +1,33 @@
-import { BooqNode } from '../model';
+import { BooqNode, BooqPath } from '../model';
 
-export function* iterateNodes(nodes: BooqNode[]): Generator<BooqNode> {
+export type BooqNodeIterator = {
+    node: BooqNode,
+    path: BooqPath,
+    position: number,
+};
+export function* iterateNodes(nodes: BooqNode[], path: BooqPath = [], position = 0): Generator<BooqNodeIterator, number> {
+    let idx = 0;
     for (const node of nodes) {
-        yield node;
+        const nextPath = [...path, idx];
+        yield {
+            node,
+            position,
+            path: nextPath,
+        };
         if (node.children) {
-            yield* iterateNodes(node.children);
+            const children = iterateNodes(node.children, nextPath, position);
+            let child = children.next();
+            while (!child.done) {
+                yield child.value;
+                child = children.next();
+            }
+            position += child.value;
+        } else {
+            position += node.content?.length ?? 1;
         }
+        idx++;
     }
+    return position;
 }
 
 export function processNode(node: BooqNode, f: (n: BooqNode) => BooqNode): BooqNode {
