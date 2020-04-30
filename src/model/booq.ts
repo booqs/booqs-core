@@ -1,3 +1,8 @@
+export type BooqId = {
+    source: string,
+    id: string,
+};
+
 export type BooqPath = number[];
 
 export type BooqNodeAttrs = {
