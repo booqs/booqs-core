@@ -1,17 +1,21 @@
 import { BooqPath, BooqNode } from '../model';
-import { findPath, rootIterator, iteratorsNode, nextNode } from './iterator';
-import { nodeText } from './node';
+import { findPath, rootIterator, iteratorsNode, nextNode, firstLeaf } from './iterator';
 
 export function previewForPath(nodes: BooqNode[], path: BooqPath, length: number) {
     let iter = findPath(rootIterator(nodes), path);
-    let preview = undefined;
+    if (!iter) {
+        return undefined;
+    }
+    iter = firstLeaf(iter);
+    let preview = '';
     while (iter) {
-        const curr = nodeText(iteratorsNode(iter));
-        preview = (preview ?? '') + curr;
-        if (preview.length > length) {
-            break;
+        const node = iteratorsNode(iter);
+        preview += node.content ?? '';
+        if (preview.length >= length) {
+            return preview;
         }
         iter = nextNode(iter);
+        iter = iter && firstLeaf(iter);
     }
     return preview;
 }

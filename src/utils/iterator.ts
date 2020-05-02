@@ -18,6 +18,19 @@ export function rootIterator(nodes: BooqNode[]) {
     };
 }
 
+export function firstLeaf(iter: BooqNodeIterator): BooqNodeIterator {
+    const node = iteratorsNode(iter);
+    if (node.children?.length) {
+        return firstLeaf({
+            parent: iter,
+            nodes: node.children,
+            index: 0,
+        });
+    } else {
+        return iter;
+    }
+}
+
 export function findPath(iter: BooqNodeIterator, path: BooqPath): BooqNodeIterator | undefined {
     const [head, ...tail] = path;
     if (head === undefined || head >= iter.nodes.length) {
