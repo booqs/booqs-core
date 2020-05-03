@@ -1,5 +1,15 @@
 import { BooqNode, BooqPath } from '../model';
 
+export function nodeText(node: BooqNode): string {
+    if (node.children?.length) {
+        return node.children
+            .map(nodeText)
+            .join('');
+    } else {
+        return node.content ?? '';
+    }
+}
+
 type BooqNodeIteratorValue = {
     node: BooqNode,
     path: BooqPath,

@@ -1,4 +1,13 @@
+export type BooqId = {
+    id: string,
+    source: string,
+};
+
 export type BooqPath = number[];
+export type BooqRange = {
+    start: BooqPath,
+    end?: BooqPath,
+};
 
 export type BooqNodeAttrs = {
     [name in string]?: string;

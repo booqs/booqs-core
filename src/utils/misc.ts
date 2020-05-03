@@ -1,3 +1,11 @@
+export function makeId(...ids: string[]): string {
+    return ids.join('/');
+}
+
+export function parseId(id: string): string[] {
+    return id.split('/');
+}
+
 export function assertNever(x: never) {
     return x;
 }
